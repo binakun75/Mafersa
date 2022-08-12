@@ -5,10 +5,12 @@
     <x-slot name="meta_keywords">
         Constructora Mafersa, empresa de construccion, constructora, tienda de materiales de construccion, agregados de construccion, maquinaria pesada
     </x-slot>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Nosotros') }}
+            {{ __('CONSTRUCTORA MAFERSA') }}
         </h2>
+
     </x-slot>
 
     <div class="py-12">
