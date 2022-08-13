@@ -11,6 +11,9 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use app\Models\Staff;
+use app\Models\Role;
+use app\Models\CreditNote;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -60,10 +63,25 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function staf(){
+    public function staff(){
         //$staf = Staff::where('user_id', $this->id)->first();
 
         return $this->hasOne(Staff::class, 'user_id');
 
     }
+
+    //relacion de uno a muchos 
+    public function credit_notes(){
+        return $this->hasMany(CreditNote::class);
+    }
+    
+    //relacion de muchos a muchos
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
+
+    //relacion polimorfica
+    public function image(){
+        return $this->morphOne('app\Models\Image','imageable');
+    }    
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name',50);
             $table->decimal('unit_price', $precision = 10, $scale = 2);
             $table->integer('score')->nullable();
-
+            $table->string('measure');
             $table->unsignedBigInteger("category_id");
             $table->foreign("category_id")
                     ->references("id")

@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Status extends Model
+class Image extends Model
 {
     use HasFactory;
 
-    public function credit_notes(){
-        return $this->hasMany(CreditNote::class);
+    public function imageable(){
+        return $this->morphTo();
     }
-    
 }

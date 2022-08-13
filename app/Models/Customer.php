@@ -13,4 +13,8 @@ class Customer extends Model
     public function address(){
         return $this->belongsTo(Address::class);
     }
+
+    public function ConstructionSite(){
+        return $this->hasMany(ConstructionSite::class);
+    }
 }

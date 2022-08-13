@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Validation\Rules\Unique;
 
 return new class extends Migration
 {
@@ -14,18 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('branch_offices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('dni_ruc')->nullable();
-            $table->string("email")->unique()->default('cliente@gmail.com');
-
-            $table->unsignedBigInteger('address_id');
-            $table->foreign("address_id")
+            $table->unsignedBigInteger('address_id')->unique();
+            $table->unsignedBigInteger('staff_id')->nullable();
+            
+            $table->foreign('address_id')
                     ->references('id')->on('addresses')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
                     
+            $table->foreign('staff_id')
+                    ->references('id')->on('staffs')
+                    ->onUpdate('set null')
+                    ->onDelete('set null');
+            
             $table->timestamps();
         });
     }
@@ -37,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('branch_offices');
     }
 };
